@@ -1,0 +1,49 @@
+1. Parent Process Starts
+main() begins execution.
+
+signal(SIGCHLD, proc_exit) registers proc_exit as the handler for SIGCHLD signals (triggered when a child terminates).
+
+2. fork() is Called
+The parent process calls fork(), creating a child process.
+
+The switch statement checks the return value of fork():
+
+case -1: Fork failed (error).
+
+case 0: Child process executes this block.
+
+default: Parent process executes this block.
+
+3. Child Process Execution
+The child process:
+
+Prints "I'm alive (temporarily)\n".
+
+Generates a random exit code (ret_code = rand() % 100).
+
+Prints "Child return code is <ret_code>\n".
+
+Calls exit(ret_code) to terminate with the random code.
+
+4. Parent Process Execution
+The parent process:
+
+Prints "Parent waiting for child...\n".
+
+Calls pause(), suspending itself until a signal (like SIGCHLD) is received.
+
+5. Child Terminates → SIGCHLD Sent to Parent
+When the child exits, the kernel sends SIGCHLD to the parent.
+The parent’s signal handler proc_exit() is invoked.
+
+6. Signal Handler proc_exit() Runs
+waitpid(-1, &wstat, WNOHANG) reaps the child’s exit status:
+
+pid = child’s PID, wstat stores exit info.
+
+If pid == -1, prints "No more child processes." (no children left).
+
+If WIFEXITED(wstat) is true, prints:
+Child <pid> exited with code: <ret_code>
+
+The parent resumes after pause() and exits (return 0).
