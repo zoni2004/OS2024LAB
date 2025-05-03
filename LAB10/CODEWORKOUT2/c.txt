@@ -1,6 +1,5 @@
-Here's a dry run of the reader and writer functions from the reader-writer synchronization program:
 
-### i) `reader()` Function Dry Run:
+i) `reader()` Function Dry Run:
 
 1. **Initialization**:
    - Receives thread ID as argument `(long)arg`
@@ -38,7 +37,7 @@ Here's a dry run of the reader and writer functions from the reader-writer synch
    usleep(1000); // Short delay (1ms)
    ```
 
-### ii) `writer()` Function Dry Run:
+ii) `writer()` Function Dry Run:
 
 1. **Initialization**:
    - Receives thread ID as argument `(long)arg`
