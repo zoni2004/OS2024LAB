@@ -1,1 +1,4 @@
-hello
+This is the initial content.
+Readers will read these lines.
+Writers will append new random strings.
+The file is shared between threads.
