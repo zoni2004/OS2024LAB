@@ -13,7 +13,7 @@ void my_handler(int signum){
 }
 
 int main(){
-     if(signal(SIGINT, sigint_handler) == SIG_ERR){
+     if(signal(SIGUSR1, sigint_handler) == SIG_ERR){
         printf("Error setting up handler for SIGUSR1\n");
         return 1;
       }
